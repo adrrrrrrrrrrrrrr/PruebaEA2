@@ -34,4 +34,12 @@ export class AuthService {
       console.log(resultado);
     });
   }
+
+  public cerrar_sesion(){
+    if(this.usuarioLogueado){
+      this.usuarioLogueado=null;
+      this.accessToken=null;
+    }
+
+  }
 }
