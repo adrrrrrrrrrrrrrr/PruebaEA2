@@ -36,6 +36,7 @@ export class IniciarSesionPage implements ViewWillEnter,ViewDidLeave {
   public validarFormulario(){
     const esValido = this.formulario.valid;
     if(!esValido){
+
       return
     }
     const datos = this.formulario.getRawValue()
@@ -48,7 +49,7 @@ export class IniciarSesionPage implements ViewWillEnter,ViewDidLeave {
   public ionViewWillEnter(): void {
     this.subCargando = this.auth.cargando.subscribe(nuevoValor =>{
       this.cargando_bloqueo = nuevoValor;
-})
+  })
 
   }
 
