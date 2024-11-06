@@ -7,31 +7,44 @@
         <ion-card>
           <ion-card-header class="ion-text-center">
             <img src="assets/pr2.png" alt="Bienvenido" class="header-image">
-
-            <ion-card-title>
-              Bienvenido
-            </ion-card-title>
-         
+            
           </ion-card-header>
           <ion-card-content>
+            <ion-card-title style="text-align: center;">
+              Bienvenido
+            </ion-card-title> 
             <form [formGroup]="formulario" (submit)="validarFormulario()">
               <ion-grid>
                 <ion-row>
                   <ion-col>
-                    <ion-input formControlName="usuario"
-                    label="Usuario"
-                    labelPlacement="floating" 
-                    fill="outline"
-                    type="text"></ion-input>
+                    <ion-card-content>
+                      <ion-input formControlName="usuario"
+                      label="Usuario"
+                      labelPlacement="floating" 
+                      fill="outline"
+                      type="text"></ion-input>
+                    </ion-card-content>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <ion-input formControlName="contrasenia"
-                    label="Contraseña"
-                    labelPlacement="floating" 
-                    fill="outline"
-                    type="password"></ion-input>
+                    <ion-card-content>
+                      <ion-input formControlName="contrasenia"
+                      label="Contraseña"
+                      labelPlacement="floating" 
+                      fill="outline"
+                      type="password"></ion-input>
+                    </ion-card-content>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-card-content>
+                        <div (click)="toggleRecuerdame()" style="display: flex;">
+                          <span style="flex: 1; text-align: left;">Recuerdame</span>
+                          <ion-toggle [checked]="true"></ion-toggle>
+                        </div>
+                    </ion-card-content>
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -51,11 +64,6 @@
                 </ion-row>
               </ion-grid>
             </form>
-            <div class="recuerdame-container" (click)="toggleRecuerdame()">
-              <span>Recuerdame</span>
-              <!-- Aquí está el círculo que se mueve -->
-              <div class="circle" [class.moved]="isMoved"></div>
-            </div>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -63,23 +71,6 @@
   </ion-grid>
 </ion-content>
 
-<style>
-  .recuerdame-container {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
 
-.circle {
-  width: 20px;
-  height: 20px;
-  background-color: #4CAF50;
-  border-radius: 50%;
-  margin-left: 10px;
-  transition: transform 0.3s ease;
-}
 
-.circle.moved {
-  transform: translateX(30px); /* Mueve el círculo a la derecha */
-}
-</style>
+
