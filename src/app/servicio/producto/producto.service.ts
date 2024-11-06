@@ -50,27 +50,21 @@ export class ProductoService {
  
 
   public siguientesProductos() {
-    if (this.noHayMasProductos) return;  // Si ya no hay más productos, no hace nada
-
-    // Aumenta el valor de `skip` en 30
+    if (this.noHayMasProductos) return;  
     this.saltar = this.saltar + this.cantidad;
-
     const url_nueva = `${this.URL_PRODUCTOS}?limit=${this.cantidad}&skip=${this.saltar}`;
-
     this.http.get<ProductoRespuesta>(url_nueva, {
       headers: {
         'Authorization': 'Bearer ' + this.auth.accessToken,
         'Content-Type': 'application/json'
       }
     }).subscribe(datos => {
-      const productosActuales = this.$productos.value;  // Obtén los productos actuales
-      const nuevosProductos = datos.products; // Los nuevos productos que estamos cargando
+      const productosActuales = this.$productos.value;  
+      const nuevosProductos = datos.products; 
 
       if (nuevosProductos.length > 0) {
-        this.$productos.next([...productosActuales, ...nuevosProductos]);  // Añade los nuevos productos a los existentes
+        this.$productos.next([...productosActuales, ...nuevosProductos]);  
       }
-
-      // Verifica si ya no hay más productos para cargar
       this.noHayMasProductos = nuevosProductos.length < this.cantidad;
     });
   }

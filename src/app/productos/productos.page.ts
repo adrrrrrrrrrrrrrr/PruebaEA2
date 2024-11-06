@@ -13,9 +13,7 @@ export class ProductosPage implements ViewWillEnter,ViewDidLeave {
 
   public productos : Producto[] = [];
   private subProducto!:Subscription;
-
-  public noHayMasProductos = false;  // Bandera para saber si no hay más productos
-
+  public noHayMasProductos = false; 
 
   constructor(
     private prdS:ProductoService
@@ -29,15 +27,10 @@ export class ProductosPage implements ViewWillEnter,ViewDidLeave {
 
   public cargarMasProductos(event: Event): void {
     if (this.noHayMasProductos) {
-      // Si no hay más productos, detener el spinner
       (event.target as any).complete(); 
       return;
     }
-
-    // Llamar a la función para cargar los siguientes productos
     this.prdS.siguientesProductos();
-    
-    // Detener el spinner después de un pequeño retraso
     (event.target as any).complete();
   }
 
@@ -57,8 +50,6 @@ export class ProductosPage implements ViewWillEnter,ViewDidLeave {
     }
   }
 
-  public siguiente(){
-    this.prdS.siguientesProductos();
-  }
+
 
 }
