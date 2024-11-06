@@ -8,9 +8,8 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [scrollEvents]="true" (ionInfinite)="cargarMasProductos($event)">
-  <ion-grid>
+<ion-content [fullscreen]="true">
+  <ion-grid fixed>
     <ion-row>
       <ion-col>
         <ion-list *ngIf="productos">
@@ -30,8 +29,7 @@
   </ion-grid>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="cargarMasProductos($event)">
     <ion-infinite-scroll-content 
-      loadingSpinner="bubbles" 
-      loadingText="Cargando más productos...">
+      loadingSpinner="bubbles">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

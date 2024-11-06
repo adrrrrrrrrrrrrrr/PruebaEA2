@@ -3,6 +3,7 @@ import { ProductoService } from '../servicio/producto/producto.service';
 import { Producto } from '../interfaces/Producto';
 import { ViewWillEnter, ViewDidLeave } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../servicio/auth/auth.service';
 
 @Component({
   selector: 'app-productos',
@@ -20,20 +21,6 @@ export class ProductosPage implements ViewWillEnter,ViewDidLeave {
   ) { }
 
   
-
-
-
- 
-
-  public cargarMasProductos(event: Event): void {
-    if (this.noHayMasProductos) {
-      (event.target as any).complete(); 
-      return;
-    }
-    this.prdS.siguientesProductos();
-    (event.target as any).complete();
-  }
-
   
   public ionViewWillEnter(): void {
     this.subProducto = this.prdS.producto.subscribe(productos=>{
@@ -50,6 +37,12 @@ export class ProductosPage implements ViewWillEnter,ViewDidLeave {
     }
   }
 
+  public cargarMasProductos(event: any) {
+    this.prdS.siguientesProductos();
+    setTimeout(() => {
+      event.target.complete();
+    }, 500);
+  }
 
 
 }
